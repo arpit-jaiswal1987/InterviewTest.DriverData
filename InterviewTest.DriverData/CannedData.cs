@@ -53,5 +53,22 @@ namespace InterviewTest.DriverData
 				AverageSpeed = 0m
 			}
 		};
-	}
+        public static readonly IReadOnlyCollection<Period> EmptyHistory = new Period[]{ };
+
+        public static readonly IReadOnlyCollection<Period> DeliveryDriverOutOfPermittedTime = new[] {
+            new Period { Start=_day+new TimeSpan(8,0,0),
+                End=_day+new TimeSpan(8,59,59),
+                AverageSpeed=25m },
+            new Period {
+            Start=_day+new TimeSpan(17,0,1),
+            End=_day+new TimeSpan(17,10,0),
+            AverageSpeed=25m}
+        };
+
+        public static readonly IReadOnlyCollection<Period> DeliveryDriverExceedSpeedLimit = new[] {
+            new Period { Start=_day+new TimeSpan(9,0,0),
+                End=_day+new TimeSpan(9,59,59),
+                AverageSpeed=30.1m },
+        };
+    }
 }
