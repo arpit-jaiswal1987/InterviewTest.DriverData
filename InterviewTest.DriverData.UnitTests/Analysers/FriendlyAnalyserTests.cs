@@ -10,9 +10,13 @@ namespace InterviewTest.DriverData.UnitTests.Analysers
 		[Test]
 		public void ShouldAnalyseWholePeriodAndReturn1ForDriverRating()
 		{
-			// BONUS: What is AAA?
+            // BONUS: What is AAA?
+            //AAA- Arrange, Act, Assert is a way of formatting and arranging code in C#, so that it is more readable and meaningful.
+            //Arrange: Arrange all necessary preconditions and inputs. 
+            //Act: Act on the object or method under test.
+            //Assert: Assert that the expected results have occurred.
 
-			var data = new[]
+            var data = new[]
 			{
 				new Period
 				{

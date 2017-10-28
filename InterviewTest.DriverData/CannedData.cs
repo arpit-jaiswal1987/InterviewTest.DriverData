@@ -22,6 +22,7 @@ namespace InterviewTest.DriverData
         }
 
         // BONUS: What's so great about IReadOnlyCollections?
+        // IReadOnlyColletion represents strongly-typed, read-only collection of elements. Since this is readonly, the value will not change on runtime.
         public static readonly IReadOnlyCollection<Period> History = new[]
 		{
 			new Period

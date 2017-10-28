@@ -8,8 +8,9 @@ namespace InterviewTest.Commands
 {
 	public class AnalyseHistoryCommand
 	{
-		// BONUS: What's great about readonly?
-		private readonly IAnalyser _analyser;
+        // BONUS: What's great about readonly?
+        //Readonly is initialized only once in the constructor. This is set on runtime.
+        private readonly IAnalyser _analyser;
 
 		public AnalyseHistoryCommand(IReadOnlyCollection<string> arguments)
 		{
