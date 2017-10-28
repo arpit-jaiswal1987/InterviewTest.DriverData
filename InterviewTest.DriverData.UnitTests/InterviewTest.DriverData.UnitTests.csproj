@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalyserLookupTests.cs" />
     <Compile Include="Analysers\DeliveryDriverAnalyserPenaltyTests.cs" />
     <Compile Include="Analysers\FormulaOneAnalyserPenaltyTests.cs" />
     <Compile Include="Analysers\FormulaOneAnalyserTests.cs" />
