@@ -91,5 +91,34 @@ namespace InterviewTest.DriverData
                 AverageSpeed=201
             }
         };
+        public static readonly IReadOnlyCollection<Period> GetAwayDriverExceedSpeedLimit = new[]
+        {
+            new Period {
+                Start =_day+new TimeSpan(13,0,0),
+                End=_day+new TimeSpan(13,59,59),
+                AverageSpeed=81
+            }
+};
+        public static readonly IReadOnlyCollection<Period> GetawayDriverOutOfPermittedTime = new[] {
+            new Period {
+                Start=_day+new TimeSpan(0,0,0),
+                End=_day+new TimeSpan(11,0,0),
+                AverageSpeed=80
+            }
+
+        };
+        public static readonly IReadOnlyCollection<Period> GetAwayDriverExceedSpeedLimitWithPenalty = new[]
+        {
+            new Period {
+                Start =_day+new TimeSpan(13,0,0),
+                End=_day+new TimeSpan(13,30,30),
+                AverageSpeed=81
+            },
+             new Period {
+                Start =_day+new TimeSpan(13,30,30),
+                End=_day+new TimeSpan(13,59,59),
+                AverageSpeed=81
+            }
+};
     }
 }
