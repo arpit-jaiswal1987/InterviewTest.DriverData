@@ -136,7 +136,7 @@ namespace InterviewTest.DriverData.Helpers
             return periodRatings;
         }
 
-        internal static decimal CalculateOverallWeightedRating(IReadOnlyCollection<PeriodRating> periodRatings, AnalyserSettings analyserSettings)
+        internal static decimal CalculateOverallWeightedRating(IReadOnlyCollection<PeriodRating> periodRatings, AnalyserSettings analyserSettings,bool isUndocumentedPeriodAvailable)
         {
             decimal rating = 0.0m;
             if (periodRatings != null && periodRatings.Any())
@@ -144,6 +144,10 @@ namespace InterviewTest.DriverData.Helpers
 
                 var weightedSum = periodRatings.Select(x => x.Duration * x.Rating).Sum();
                 rating = weightedSum / periodRatings.Sum(x => x.Duration);
+                if (isUndocumentedPeriodAvailable && analyserSettings.ApplyUnDocumentedPenaltyFlag)
+                {
+                    rating = rating * analyserSettings.UndocumentedPenalty;
+                }
             }
             return rating;
         }

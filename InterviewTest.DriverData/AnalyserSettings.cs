@@ -12,5 +12,7 @@ namespace InterviewTest.DriverData
         public TimeSpan EndOfDay { get; set; }
         public decimal SpeedLimit { get; set; }
         public decimal ExceedSpeedLimitRating { get; set; }
+        public bool ApplyUnDocumentedPenaltyFlag { get; set; }
+        public decimal UndocumentedPenalty { get; set; }
     }
 }

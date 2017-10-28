@@ -22,7 +22,8 @@ namespace InterviewTest.DriverData.Analysers
                 var days = history.GroupBy(x => x.Start.Date);
                 var periodRatings = new List<PeriodRating>();
                 var analysedDuration = new TimeSpan();
-                
+                var isUndocumentedPeriodAvailable = false;
+
                 //Calculate rating for each day
                 foreach (var day in days)
                 {
@@ -59,6 +60,7 @@ namespace InterviewTest.DriverData.Analysers
                         //Calculate rating for each undocumented period in a day
                         if (undocumentPeriods != null && undocumentPeriods.Any())
                         {
+                            isUndocumentedPeriodAvailable = true;
                             periodRatings.AddRange(AnalyserHelpers.CalculateRatingForUndocumentedPeriods(undocumentPeriods));
                         }
                     }
@@ -67,7 +69,7 @@ namespace InterviewTest.DriverData.Analysers
                 if (periodRatings != null && periodRatings.Any())
                 {
                     result = new HistoryAnalysis();
-                    result.DriverRating = AnalyserHelpers.CalculateOverallWeightedRating(periodRatings, AnalyserSettings);
+                    result.DriverRating = AnalyserHelpers.CalculateOverallWeightedRating(periodRatings, AnalyserSettings, isUndocumentedPeriodAvailable);
                     result.AnalysedDuration = analysedDuration;
                 }
             }
