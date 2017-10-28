@@ -31,6 +31,24 @@ namespace InterviewTest.DriverData.UnitTests.Analysers
 		}
 
         [Test]
+        public void ShouldYieldCorrectValuesCannedDataFromFile()
+        {
+            //Arrange
+            var expectedResult = new HistoryAnalysis
+            {
+                AnalysedDuration = new TimeSpan(7, 45, 0),
+                DriverRating = 0.7638m
+            };
+
+            //Act
+            var actualResult = new DeliveryDriverAnalyser(analyserSettings).Analyse(CannedDrivingData.GetHistoryData());
+
+            //Assert
+            Assert.That(actualResult.AnalysedDuration, Is.EqualTo(expectedResult.AnalysedDuration));
+            Assert.That(actualResult.DriverRating, Is.EqualTo(expectedResult.DriverRating).Within(0.001m));
+        }
+
+        [Test]
         public void ShouldReturnZeroRatingForEmptyListOfPeriod()
         {
             //Arrange

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTest.DriverData.Console", "InterviewTest.DriverData.Console\InterviewTest.DriverData.Console.csproj", "{D271F296-A3F7-4513-AA00-57E3954D7E52}"
 EndProject
@@ -37,6 +37,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task 4 - Improve our tests", "Task 4 - Improve our tests", "{A1251B34-87D6-4DCE-A4B0-3D0EDDD36EEC}"
 	ProjectSection(SolutionItems) = preProject
 		Task 4.txt = Task 4.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HistoryDataFiles", "HistoryDataFiles", "{463DA062-2C97-4C9B-A101-6D6D08E2D4B9}"
+	ProjectSection(SolutionItems) = preProject
+		HistoryDataFiles\EmptyHistory.json = HistoryDataFiles\EmptyHistory.json
+		HistoryDataFiles\History.json = HistoryDataFiles\History.json
 	EndProjectSection
 EndProject
 Global

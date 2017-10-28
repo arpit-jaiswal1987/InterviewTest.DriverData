@@ -53,8 +53,11 @@
     <Compile Include="Analysers\IAnalyser.cs" />
     <Compile Include="CannedData.cs" />
     <Compile Include="Helpers\AnalyserHelpers.cs" />
+    <Compile Include="Helpers\FileInputRetriever.cs" />
     <Compile Include="Helpers\JsonSerializer.cs" />
     <Compile Include="HistoryAnalysis.cs" />
+    <Compile Include="InputRetrieverLookup.cs" />
+    <Compile Include="Interfaces\IInputRetriever.cs" />
     <Compile Include="Interfaces\ISerializer.cs" />
     <Compile Include="PeriodRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

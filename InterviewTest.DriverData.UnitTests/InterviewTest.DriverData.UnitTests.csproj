@@ -55,10 +55,12 @@
     <Compile Include="Analysers\GetawayDriverAnalyserPenaltyTests.cs" />
     <Compile Include="Analysers\GetawayDriverAnalyserTests.cs" />
     <Compile Include="Analysers\FriendlyAnalyserTests.cs" />
+    <Compile Include="FileInputRetrieverTests.cs" />
     <Compile Include="Helpers\JsonSerializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

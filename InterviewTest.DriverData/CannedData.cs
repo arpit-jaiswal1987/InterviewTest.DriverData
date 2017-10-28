@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 
 namespace InterviewTest.DriverData
 {
@@ -7,8 +9,20 @@ namespace InterviewTest.DriverData
 	{
 		private static readonly DateTimeOffset _day = new DateTimeOffset(2016, 10, 13, 0, 0, 0, 0, TimeSpan.Zero);
 
-		// BONUS: What's so great about IReadOnlyCollections?
-		public static readonly IReadOnlyCollection<Period> History = new[]
+        private static readonly string HistoryDataFilesBasePath = ConfigurationSettings.AppSettings.Get("HistoryDataFilesBasePath");
+        public static IReadOnlyCollection<Period> GetHistoryData()
+        {
+            var path = Path.Combine(HistoryDataFilesBasePath, "History.json");
+            var text = InputRetrieverLookup.GetInputRetriever().RetrieveText(path);
+            if (text != null && text.Length > 0)
+            {
+                return (List<Period>)SerializerLookup.GetSerializer().Deserialize(text, typeof(List<Period>));
+            }
+            return null;
+        }
+
+        // BONUS: What's so great about IReadOnlyCollections?
+        public static readonly IReadOnlyCollection<Period> History = new[]
 		{
 			new Period
 			{
