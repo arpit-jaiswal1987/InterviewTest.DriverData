@@ -70,5 +70,26 @@ namespace InterviewTest.DriverData
                 End=_day+new TimeSpan(9,59,59),
                 AverageSpeed=30.1m },
         };
+        public static readonly IReadOnlyCollection<Period> FormulaOneDriverExceedSpeedLimit = new[]
+        {
+            new Period {
+                Start =_day+new TimeSpan(0,0,0),
+                End=_day+new TimeSpan(1,0,0),
+                AverageSpeed=201
+            }
+        };
+        public static readonly IReadOnlyCollection<Period> FormulaOneDriverExceedSpeedLimitWithPenalty = new[]
+        {
+            new Period {
+                Start =_day+new TimeSpan(1,0,0),
+                End=_day+new TimeSpan(2,0,0),
+                AverageSpeed=201
+            },
+             new Period {
+                Start =_day+new TimeSpan(2,0,1),
+                End=_day+new TimeSpan(3,0,1),
+                AverageSpeed=201
+            }
+        };
     }
 }
