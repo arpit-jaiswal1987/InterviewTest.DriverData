@@ -11,5 +11,6 @@ namespace InterviewTest.DriverData
         public TimeSpan StartOfDay { get; set; }
         public TimeSpan EndOfDay { get; set; }
         public decimal SpeedLimit { get; set; }
+        public decimal ExceedSpeedLimitRating { get; set; }
     }
 }

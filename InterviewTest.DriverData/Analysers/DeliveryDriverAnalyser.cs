@@ -14,56 +14,42 @@ namespace InterviewTest.DriverData.Analysers
         }
 		public HistoryAnalysis Analyse(IReadOnlyCollection<Period> history)
 		{
-            HistoryAnalysis result = new HistoryAnalysis { AnalysedDuration = new TimeSpan(0,0,0), DriverRating = 0 };
-            if (history != null && history.Count>0)
+            HistoryAnalysis result = new HistoryAnalysis { AnalysedDuration = new TimeSpan(0, 0, 0), DriverRating = 0 };
+            if (history != null && history.Count > 0)
             {
                 //Group the history data for each day.
-                var days=history.GroupBy(x => x.Start.Date);
+                var days = history.GroupBy(x => x.Start.Date);
                 var periodRatings = new List<PeriodRating>();
                 var analysedDuration = new TimeSpan();
-
+                
                 //Calculate rating for each day
                 foreach (var day in days)
                 {
                     //Get all periods which fall under the permitted time of the day.
-                    var validPeriods=AnalyserHelpers.GetValidPeriods(day.ToList(), AnalyserSettings);
-                    var undocumentPeriods=AnalyserHelpers.GetUnDocumentedPeriodWithRating(validPeriods, AnalyserSettings);
+                    var validPeriods = AnalyserHelpers.GetValidPeriods(day.ToList(), AnalyserSettings);
+                    var undocumentPeriods = AnalyserHelpers.GetUnDocumentedPeriodWithRating(validPeriods, AnalyserSettings);
 
                     //Calculate rating for each valid period in a day
                     if (validPeriods != null && validPeriods.Any())
                     {
-                        foreach (var validPeriod in validPeriods)
-                        {
-                            if (validPeriod.AverageSpeed > AnalyserSettings.SpeedLimit)
-                            {
-                                periodRatings.Add(new DriverData.PeriodRating { Rating = 0.0m, Duration = (decimal)((validPeriod.End.TimeOfDay - validPeriod.Start.TimeOfDay).TotalSeconds) });
-                            }
-                            else
-                            {
-                                periodRatings.Add(new DriverData.PeriodRating { Rating = validPeriod.AverageSpeed / AnalyserSettings.SpeedLimit, Duration = (decimal)((validPeriod.End - validPeriod.Start).TotalSeconds) });
-                            }
-                            analysedDuration += (validPeriod.End - validPeriod.Start);
-                        }
+                        periodRatings.AddRange(AnalyserHelpers.CalculateRatingForValidPeriods(validPeriods, AnalyserSettings, out analysedDuration));
                     }
-                    if (undocumentPeriods!=null && undocumentPeriods.Any())
+
+                    //Calculate rating for each undocumented period in a day
+                    if (undocumentPeriods != null && undocumentPeriods.Any())
                     {
-                        foreach (var undocumentedPeriod in undocumentPeriods)
-                        {
-                            periodRatings.Add(new DriverData.PeriodRating { Rating = 0.0m, Duration = (decimal)((undocumentedPeriod.End - undocumentedPeriod.Start).TotalSeconds) });
-                        }
+                        periodRatings.AddRange(AnalyserHelpers.CalculateRatingForUndocumentedPeriods(undocumentPeriods));
                     }
                 }
 
-                if(periodRatings!=null && periodRatings.Any())
+                if (periodRatings != null && periodRatings.Any())
                 {
                     result = new HistoryAnalysis();
-                    result.DriverRating=AnalyserHelpers.CalculateOverallWeightedRating(periodRatings);
+                    result.DriverRating = AnalyserHelpers.CalculateOverallWeightedRating(periodRatings, AnalyserSettings);
                     result.AnalysedDuration = analysedDuration;
-
-
                 }
             }
             return result;
-		}
+        }
 	}
 }

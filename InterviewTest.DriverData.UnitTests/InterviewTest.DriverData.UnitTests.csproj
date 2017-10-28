@@ -51,6 +51,7 @@
     <Compile Include="Analysers\DeliveryDriverAnalyserTests.cs" />
     <Compile Include="Analysers\GetawayDriverAnalyserTests.cs" />
     <Compile Include="Analysers\FriendlyAnalyserTests.cs" />
+    <Compile Include="Helpers\JsonSerializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
